@@ -24,7 +24,6 @@ loadMoreBtn.addEventListener('click', async function () {
   await performSearch();
 });
 
-
 async function performSearch() {
   try {
     await searchImages(searchQuery, currentPage);

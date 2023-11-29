@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import * as gallery from './gallery.js';
 import Notiflix from 'notiflix';
@@ -12,14 +13,14 @@ export async function searchImages(query, page = 1) {
     const response = await axios.get(apiUrl);
     const data = response.data;
 
-    if (page === 1) {
-      gallery.hideLoadMoreBtn();
-    }
-
-    if (data.hits.length === 0 && page > 1) {
+    if (data.hits.length === 0 && page === 1) {
       gallery.hideLoadMoreBtn();
       Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.");
     } else {
+      if (page === 1) {
+        gallery.hideLoadMoreBtn();
+      }
+
       data.hits.forEach(image => {
         gallery.createImageCard(image);
       });

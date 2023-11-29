@@ -5,6 +5,8 @@ import Notiflix from "notiflix";
 const galleryElement = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
 
+const lightbox = new SimpleLightbox('.gallery a', {});
+
 export function createImageCard(image) {
   const cardHTML = `
     <div class="photo-card">
@@ -22,7 +24,6 @@ export function createImageCard(image) {
 
   galleryElement.insertAdjacentHTML('beforeend', cardHTML);
 
-  const lightbox = new SimpleLightbox('.gallery a', {});
   lightbox.refresh();
 }
 
