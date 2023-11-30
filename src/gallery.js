@@ -1,4 +1,3 @@
-//galery.js
 
 const galleryElement = document.querySelector('.gallery');
 
