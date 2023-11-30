@@ -1,12 +1,4 @@
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
-import Notiflix from "notiflix";
-
-const galleryElement = document.querySelector('.gallery');
-const loadMoreBtn = document.querySelector('.load-more');
-
-const lightbox = new SimpleLightbox('.gallery a', {});
-
+//galery.js
 export function createImageCard(image) {
   const cardHTML = `
     <div class="photo-card">
@@ -23,22 +15,5 @@ export function createImageCard(image) {
   `;
 
   galleryElement.insertAdjacentHTML('beforeend', cardHTML);
-
-  lightbox.refresh();
 }
 
-export function displayTotalHits(totalHits) {
-  Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-}
-
-export function clearGallery() {
-  galleryElement.innerHTML = '';
-}
-
-export function showLoadMoreBtn() {
-  loadMoreBtn.style.display = 'block';
-}
-
-export function hideLoadMoreBtn() {
-  loadMoreBtn.style.display = 'none';
-}
