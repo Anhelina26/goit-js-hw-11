@@ -1,4 +1,4 @@
-// index.js
+
 import * as searchApi from './search-api.js';
 import { createImageCard } from './gallery.js'
 import Notiflix from 'notiflix';
@@ -37,6 +37,7 @@ async function performSearch() {
     const data = await searchApi.searchImages(searchQuery, page);
 
     if (data.hits.length < 40 && data.hits.length === 0 && page === 1 ) {
+
       hideLoadMoreBtn();
       Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.");
       return;
@@ -54,7 +55,6 @@ async function performSearch() {
       displayTotalHits(data.totalHits);
     }
   } catch (error) {
-    hideLoadMoreBtn(); 
     Notiflix.Notify.failure('Error fetching images. Please try again later.');
     console.error('Error fetching images:', error);
   }
@@ -69,9 +69,9 @@ function showLoadMoreBtn() {
   loadMoreBtn.style.display = 'block';
 }
 
-function hideLoadMoreBtn() {
-  console.log('Hiding Load More Button');
+ function hideLoadMoreBtn() {
   loadMoreBtn.style.display = 'none';
+  console.log('Hiding Load More Button');
 }
 
 function displayTotalHits(totalHits) {

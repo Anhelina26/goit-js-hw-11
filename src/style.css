@@ -1,6 +1,5 @@
 /* styles.css */
 body {
-  
     margin: 0;
     padding: 20px;
   }
@@ -49,7 +48,6 @@ body {
   }
   
   .load-more {
-    display: none;
     margin-top: 20px;
     padding: 10px;
     background-color: #007bff;
@@ -64,4 +62,8 @@ body {
 .load-more_conteiner{
   display: flex;
   justify-content: center;
+}
+
+.hidden {
+  opacity: 0;
 }
