@@ -1,5 +1,5 @@
 
-const galleryElement = document.querySelector('.gallery');
+import { galleryElement } from './index'
 
 export function createImageCard(image) {
   const cardHTML = `
