@@ -7,7 +7,6 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 const form = document.getElementById('search-form');
 const loadMoreBtn = document.querySelector('.load-more');
-const galleryElement = document.querySelector('.gallery');
 let currentPage = 1;
 let searchQuery = '';
 
@@ -42,7 +41,7 @@ async function performSearch() {
       }
 
       data.hits.forEach(image => {
-       createImageCard(image, galleryElement);
+       createImageCard(image);
       });
 
       const lightbox = new SimpleLightbox('.gallery a', {});
