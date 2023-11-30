@@ -1,5 +1,5 @@
 //galery.js
-export function createImageCard(image) {
+export function createImageCard(image, galleryElement) {
   const cardHTML = `
     <div class="photo-card">
       <a href="${image.largeImageURL}" data-lightbox="gallery">

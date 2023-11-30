@@ -42,7 +42,7 @@ async function performSearch() {
       }
 
       data.hits.forEach(image => {
-       createImageCard(image);
+       createImageCard(image, galleryElement);
       });
 
       const lightbox = new SimpleLightbox('.gallery a', {});
