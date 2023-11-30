@@ -7,9 +7,13 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 const form = document.getElementById('search-form');
 const loadMoreBtn = document.querySelector('.load-more');
+
+export const galleryElement = document.querySelector('.gallery');
+
 let currentPage = 1;
 let searchQuery = '';
-export const galleryElement = document.querySelector('.gallery');
+
+
 
 form.addEventListener('submit', async function (event) {
   event.preventDefault();
@@ -34,13 +38,13 @@ async function performSearch() {
     const data = await searchApi.searchImages(searchQuery, currentPage);
 
     if (data.hits.length === 0 && currentPage === 1) {
-      hideLoadMoreBtn();
+     await hideLoadMoreBtn();
       Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.");
       return;
     } 
     else {
       if (currentPage === 1) {
-       hideLoadMoreBtn();
+      await hideLoadMoreBtn();
       }
 
       data.hits.forEach(image => {
@@ -66,7 +70,7 @@ function showLoadMoreBtn() {
   loadMoreBtn.style.display = 'block';
 }
 
-function hideLoadMoreBtn() {
+async function hideLoadMoreBtn() {
   loadMoreBtn.style.display = 'none';
 }
 
