@@ -35,7 +35,9 @@ async function performSearch() {
     if (data.hits.length === 0 && currentPage === 1) {
       hideLoadMoreBtn();
       Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.");
-    } else {
+      return;
+    } 
+    else {
       if (currentPage === 1) {
        hideLoadMoreBtn();
       }
