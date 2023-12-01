@@ -1,4 +1,4 @@
-
+//gallery.js
 import { galleryElement } from './index'
 
 export function createImageCard(image) {

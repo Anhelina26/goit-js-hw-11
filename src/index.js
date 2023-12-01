@@ -1,4 +1,3 @@
-
 import * as searchApi from './search-api.js';
 import { createImageCard } from './gallery.js'
 import Notiflix from 'notiflix';
@@ -7,7 +6,6 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 const form = document.getElementById('search-form');
 const loadMoreBtn = document.querySelector('.load-more');
-
 export const galleryElement = document.querySelector('.gallery');
 
 let page = 1;
@@ -17,8 +15,10 @@ form.addEventListener('submit', async function (event) {
   event.preventDefault();
   searchQuery = event.target.elements.searchQuery.value.trim();
 
-  if (searchQuery === '') {
+  if (searchQuery === '' ) {
+    hideLoadMoreBtn();
     alert('Please enter a search query');
+    hideLoadMoreBtn();
     return;
   }
 
@@ -31,16 +31,19 @@ loadMoreBtn.addEventListener('click', async function () {
   await performSearch();
 });
 
-
 async function performSearch() {
   try {
     const data = await searchApi.searchImages(searchQuery, page);
 
-    if (data.hits.length < 40 && data.hits.length === 0 && page === 1 ) {
+    const perPage = 40;
+    const totalHits = data.totalHits;
+    const totalPages = Math.ceil(totalHits / perPage);
 
+    const pagesArray = [...Array(totalPages).keys()].map(page => page + 1);
+
+    if (page === pagesArray || data.hits.length === 0 ) {
       hideLoadMoreBtn();
       Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.");
-      return;
     } else {
       showLoadMoreBtn();
       page += 1;
@@ -57,6 +60,7 @@ async function performSearch() {
   } catch (error) {
     Notiflix.Notify.failure('Error fetching images. Please try again later.');
     console.error('Error fetching images:', error);
+    hideLoadMoreBtn();
   }
 }
 
@@ -65,12 +69,12 @@ function clearGallery() {
 }
 
 function showLoadMoreBtn() {
+  loadMoreBtn.classList.remove('hidden');
   console.log('Showing Load More Button');
-  loadMoreBtn.style.display = 'block';
 }
 
- function hideLoadMoreBtn() {
-  loadMoreBtn.style.display = 'none';
+function hideLoadMoreBtn() {
+  loadMoreBtn.classList.add('hidden');
   console.log('Hiding Load More Button');
 }
 
